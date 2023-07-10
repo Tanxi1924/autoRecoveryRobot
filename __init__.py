@@ -214,11 +214,11 @@ async def _():
     )
 
 if(platform.system()=="Windows"):
-    data_dir = r"C:/Users/Administrator/first/src/plugins/decidebot/"
+    data_dir = r"C:/Users/Administrator/first/src/plugins/decidebot/content"
 elif(platform.system()=="Linux"):
-    data_dir = "./data/favor"
+    data_dir = "./data/favor/content"
 else:
-    data_dir = "./data/favor"
+    data_dir = "./data/favor/content"
 
 
 class Vividict(dict): #多层嵌套字典
@@ -426,32 +426,6 @@ away=on_keyword(['不要你了''你走吧''扔掉你''永别了',"讨厌你"],pr
 nekosleep2=on_startswith('',priority=1,rule=favor_time2)
 nekosleep=on_startswith('',priority=2,rule=favor_time)
 tirck=on_keyword(['俯首称臣',"权威","忤逆","扶手陈晨"],priority=20,block=True)#呼出
-##R18
-Hsleep=on_fullmatch(["睡一下薇尔莉特","睡一下薇薇安"],priority=1,block=True,permission=SUPERUSER)#呼出
-Hkiss=on_fullmatch(["亲一下薇尔莉特","亲一下薇薇安"],priority=1,block=True,permission=SUPERUSER)
-
-@Hkiss.handle()
-async def _(matcher: Matcher,event:Event):
-    with open(data_dir+"Hsleep.json", "r",encoding="utf-8") as f:
-        content = json.load(f)
-    try:
-        length=len(content["亲"])
-        i=random.randint(1,length)
-        await sayHandler(bot,event,"薇尔莉特H",content["亲"][str(i)])
-    except KeyError:
-        return -1
-
-@Hsleep.handle()
-async def _(matcher: Matcher,event:Event):
-    with open(data_dir+"Hsleep.json", "r",encoding="utf-8") as f:
-        content = json.load(f)
-    try:
-        length=len(content["啪啪啪"])
-        i=random.randint(1,length)
-        await sayHandler(bot,event,"薇尔莉特H",content["啪啪啪"][str(i)])
-    except KeyError:
-        return -1
-
 
 
 
